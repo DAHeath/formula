@@ -1,0 +1,15 @@
+flags: {}
+extra-include-dirs:
+- /usr/local/include
+extra-package-dbs: []
+extra-lib-dirs:
+- /usr/local/lib
+packages:
+- .
+- location:
+    git: https://github.com/DAHeath/z3-haskell
+    commit: f18110558d74dd8df8560f2b0fc2cc0704673917
+  extra-dep: true
+extra-deps:
+- global-lock-0.1
+resolver: lts-11.4

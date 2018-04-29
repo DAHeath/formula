@@ -1,0 +1,37 @@
+name: formula
+version: '0.1.0.0'
+category: Logic
+author: David Heath
+maintainer: heath.davidanthony@gmail.com
+license: MIT
+
+default-extensions:
+- LambdaCase
+- GeneralizedNewtypeDeriving
+- DeriveDataTypeable
+- DeriveFunctor
+- DeriveFoldable
+- DeriveTraversable
+- FlexibleContexts
+- FlexibleInstances
+
+dependencies:
+- base
+- template-haskell
+- syb
+- z3 >=4.1
+- turtle
+- lens
+- prettyprinter
+- containers
+- mtl
+- parsec
+- split
+
+
+library:
+  ghc-options: -Wall
+  source-dirs: src
+
+  exposed-modules:
+    Formula
