@@ -35,3 +35,4 @@ library:
 
   exposed-modules:
     Formula
+    Formula.Z3
