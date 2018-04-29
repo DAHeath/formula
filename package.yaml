@@ -28,11 +28,10 @@ dependencies:
 - parsec
 - split
 
-
 library:
   ghc-options: -Wall
   source-dirs: src
 
   exposed-modules:
-    Formula
-    Formula.Z3
+  - Formula
+  - Formula.Z3
