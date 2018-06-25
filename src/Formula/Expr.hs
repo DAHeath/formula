@@ -175,8 +175,15 @@ mkOr x y
 mkNot :: Expr -> Expr
 mkNot (LBool True) = LBool False
 mkNot (LBool False) = LBool True
-mkNot (Nql t :@ x :@ y) = Eql t :@ x :@ y
 mkNot (Not :@ y) = y
+mkNot (And :@ x :@ y) = mkOr (mkNot x) (mkNot y)
+mkNot (Or :@ x :@ y) = mkAnd (mkNot x) (mkNot y)
+mkNot (Lt t :@ x :@ y) = Ge t :@ x :@ y
+mkNot (Le t :@ x :@ y) = Gt t :@ x :@ y
+mkNot (Gt t :@ x :@ y) = Le t :@ x :@ y
+mkNot (Ge t :@ x :@ y) = Lt t :@ x :@ y
+mkNot (Eql t :@ x :@ y) = Nql t :@ x :@ y
+mkNot (Nql t :@ x :@ y) = Eql t :@ x :@ y
 mkNot x = Not :@ x
 
 mkEql :: Type -> Expr -> Expr -> Expr
