@@ -275,12 +275,15 @@ varElim conserve = loop
         | otherwise -> return ()
       _ -> return ()
 
-    clean = transform (\case
-      Eql t :@ f1 :@ f2 -> mkEql t (clean f1) (clean f2)
-      And :@ x :@ y -> mkAnd (clean x) (clean y)
-      Or :@ x :@ y -> mkOr (clean x) (clean y)
-      Add t :@ x :@ y -> mkAdd t (clean x) (clean y)
-      f -> f)
+clean :: Expr -> Expr
+clean = transform (\case
+  Eql t :@ f1 :@ f2 -> mkEql t (clean f1) (clean f2)
+  And :@ x :@ y -> mkAnd (clean x) (clean y)
+  Or :@ x :@ y -> mkOr (clean x) (clean y)
+  Impl :@ x :@ y -> mkImpl (clean x) (clean y)
+  Iff :@ x :@ y -> mkIff (clean x) (clean y)
+  Add t :@ x :@ y -> mkAdd t (clean x) (clean y)
+  f -> f)
 
 esub :: Map Var Expr -> Expr -> Expr
 esub m = transform (\case
