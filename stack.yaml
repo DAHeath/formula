@@ -8,8 +8,7 @@ packages:
 - .
 - location:
     git: https://github.com/DAHeath/z3-haskell
-    commit: f18110558d74dd8df8560f2b0fc2cc0704673917
+    commit: bb02352e19fc67d8fc7489c4ea0bd3cb609e1b3e
   extra-dep: true
 extra-deps:
-- global-lock-0.1
 resolver: lts-11.4
