@@ -145,7 +145,12 @@ appMany :: Expr -> [Expr] -> Expr
 appMany = foldl (:@)
 
 mkImpl :: Expr -> Expr -> Expr
-mkImpl = app2 Impl
+mkImpl _ (LBool True) = LBool True
+mkImpl (LBool False) _ = LBool True
+mkImpl _ (LBool False) = LBool False
+mkImpl (LBool True) y = y
+mkImpl x y = app2 Impl x y
+
 
 mkIff :: Expr -> Expr -> Expr
 mkIff = app2 Iff
