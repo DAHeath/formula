@@ -152,7 +152,14 @@ mkImpl x y = app2 Impl x y
 
 
 mkIff :: Expr -> Expr -> Expr
-mkIff = app2 Iff
+mkIff (LBool True) b = b
+mkIff a (LBool True) = a
+mkIff (LBool False) b = mkNot b
+mkIff a (LBool False) = mkNot a
+mkIff a b =
+  if a == b
+  then LBool True
+  else app2 Iff a b
 
 mkAdd :: Type -> Expr -> Expr -> Expr
 mkAdd _ (LInt a) (LInt b) = LInt (a + b)
